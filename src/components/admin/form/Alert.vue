@@ -19,8 +19,8 @@ const alertFunction = ()=>{
               <p class="text-secondary-950 font-light text-sm">{{ store.alert.description}}</p>
             </div>
             <div class="flex justify-center pt-8 pb-4 items-center gap-4">
-              <button @click="store.alert.open = false" type="button" class="w-3/4 bg-secondary-500 py-1.5 text-white rounded">close</button>
-              <button @click="alertFunction()" type="button" class="w-3/4 bg-main-50 py-1.5 text-white rounded">OK</button>
+              <button @click="store.alert.open = false" type="button" class="w-3/4 bg-secondary-500 py-1.5 text-white rounded">الغاء</button>
+              <button @click="alertFunction()" type="button" class="w-3/4 bg-main-50 py-1.5 text-white rounded">تاكيد</button>
             </div>
           </div>
         </div>

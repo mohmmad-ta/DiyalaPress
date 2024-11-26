@@ -4,11 +4,11 @@ import NavBarAdmin from "@/components/admin/NavBarAdmin.vue";
 import { useAdminStore } from '@/stores/StoreAdmin.js'
 import {onMounted, onUnmounted, ref} from "vue";
 import TNews from "@/components/admin/TNews.vue";
-import TProblem from "@/components/admin/TProblem.vue";
+import TContact from "@/components/admin/TContact.vue";
 import FormNews from "@/components/admin/form/FormNews.vue";
 import Filter from "@/components/admin/form/Filter.vue";
 import Search from "@/components/admin/form/Search.vue";
-import TNotifications from "@/components/admin/TNotifications.vue";
+import FormContact from "@/components/admin/form/FormContact.vue";
 
 const store = useAdminStore();
 onMounted(()=>{
@@ -28,19 +28,17 @@ onUnmounted(()=>{
 
 const handleScroll = (e)=>{
   let element = scrollComponent.value;
-  console.log("news state", store.scrollStatusNews)
   if (store.scrollStatusNews === true && store.dashStep === 1){
-    console.log("news state", store.scrollStatusNews)
     if (element.getBoundingClientRect().bottom < window.innerHeight) {
-      store.scrollStatus = false
+      store.scrollStatusNews = false
       page1.value += 1;
       store.getIndexNews(page1.value)
     }
-  }else if(store.scrollStatusComplaints === true && store.dashStep === 2){
+  }else if(store.scrollStatusContactUs === true && store.dashStep === 2){
     if (element.getBoundingClientRect().bottom < window.innerHeight) {
-      store.scrollStatus = false
+      store.scrollStatusContactUs = false
       page2.value += 1;
-      store.getIndexComplaints(page2.value)
+      store.getIndexContactUs(page2.value)
     }
   }
 }
@@ -54,15 +52,15 @@ const handleScroll = (e)=>{
       <NavBarAdmin />
       <div :class="store.slidOpen === true ? 'mr-80' : 'mr-0'" class="w-full duration-200 h-fit px-6 py-20 mb-4 lg:p-18">
         <TNews v-if="store.dashStep === 1" />
-        <TProblem v-else-if="store.dashStep === 2" />
-        <TNotifications v-else-if="store.dashStep === 3" />
+        <TContact v-else-if="store.dashStep === 2" />
       </div>
     </div>
     <Transition>
       <div v-if="store.openForm !== 0" class="fixed justify-center items-center flex top-0 left-0 z-50 w-full min-h-screen">
         <div @click="store.openForm = 0" class="w-full cursor-pointer absolute top-0 z-50 left-0 h-full bg-primary-300 backdrop-blur-sm"></div>
-        <div class="bg-white duration-150 justify-center min-w-96 z-50 p-4 rounded h-fit">
+        <div class="bg-white duration-150 justify-center w-full mx-4 md:w-[30rem] z-50 p-4 rounded h-fit">
           <FormNews v-if="store.openForm === 1" />
+          <FormContact v-if="store.openForm === 2" />
           <Search v-if="store.openForm === 10" />
           <Filter v-if="store.openForm === 11" />
         </div>

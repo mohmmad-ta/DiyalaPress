@@ -16,7 +16,7 @@ const router = createRouter({
     },
     {
       path: '/admin',
-      name: 'admin',
+      name: 'Admin',
       component: () => import('../views/Admin.vue'),
     },
     {
@@ -39,7 +39,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   let token = localStorage.getItem("token");
-  if (to.name === 'admin' && token === null) next({ name: 'login' })
+  if (to.name === 'Admin' && token === null) next({ name: 'login' })
   next()
 })
 

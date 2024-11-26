@@ -12,39 +12,7 @@ const config = {
   wrapAround: true,
   pauseAutoplayOnHover: true,
 };
-const breakpoints = {
-  1: {
-    itemsToShow: 2.4,
-  },
-  700: {
-    itemsToShow: 3,
-  },
-  1000: {
-    itemsToShow: 3.5,
-  },
-  1500: {
-    itemsToShow: 5.3,
-  },
-}
-const items = [
-  {
-    image: "/a1.jpg",
-    title: "1Lorem ipsum dolor sit amet, consectetur adipisicing .",
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolorum illo pariatur provident quisquam ratione repudiandae! Amet enim hic, labore maiores necessitatibus nihil placeat? Aliquam molestiae quia quisquam suscipit voluptatem.",
-  },{
-    image: "/a2.jpg",
-    title: "2Lorem ipsum dolor sit amet, consectetur adipisicing .",
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolorum illo pariatur provident quisquam ratione repudiandae! Amet enim hic, labore maiores necessitatibus nihil placeat? Aliquam molestiae quia quisquam suscipit voluptatem.",
-  },{
-    image: "/a3.jpg",
-    title: "3Lorem ipsum dolor sit amet, consectetur adipisicing .",
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolorum illo pariatur provident quisquam ratione repudiandae! Amet enim hic, labore maiores necessitatibus nihil placeat? Aliquam molestiae quia quisquam suscipit voluptatem.",
-  },{
-    image: "/a4.jpg",
-    title: "4Lorem ipsum dolor sit amet, consectetur adipisicing .",
-    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolorum illo pariatur provident quisquam ratione repudiandae! Amet enim hic, labore maiores necessitatibus nihil placeat? Aliquam molestiae quia quisquam suscipit voluptatem.",
-  },
-]
+
 const carouselRef = ref();
 const currentSlide = ref(0);
 
@@ -57,9 +25,9 @@ const prev = () => carouselRef.value.prev();
     <header class="min-h-screen pt-10 flex items-center w-full relative">
       <div class="absolute z-10 top-0 left-0 w-full blur-sm h-full">
         <Carousel class="overflow-hidden" :transition="700" v-bind="config" ref="carouselRef" v-model="currentSlide">
-          <Slide v-for="(item, index) in items" :key="index">
+          <Slide v-for="(item, index) in store.sliderNews" :key="index">
             <div class="relative ci">
-              <img class="w-full blur-sm h-full" :src="item.image" alt="">
+              <img class="w-full blur-sm h-full" :src="'https://api.diyalapress.com/'+item.image" alt="">
             </div>
           </Slide>
         </Carousel>
@@ -69,10 +37,10 @@ const prev = () => carouselRef.value.prev();
         <div class="w-full z-50">
           <div class="w-full h-96 mt-10 md:mt-0  rounded">
             <Carousel class="overflow-hidden" :transition="700" v-bind="config" ref="carouselRef" v-model="currentSlide">
-              <Slide v-for="(item, index) in items" :key="index">
+              <Slide v-for="(item, index) in store.sliderNews" :key="index">
                 <div class="relative ci2">
                   <Transition name="slide-fade">
-                    <img class="w-full h-96 rounded" :src="item.image" alt="">
+                    <img class="w-full h-96 rounded" :src="'https://api.diyalapress.com/'+item.image" alt="">
                   </Transition>
                 </div>
               </Slide>
@@ -86,9 +54,11 @@ const prev = () => carouselRef.value.prev();
         <div class="w-full px-0 py-10 md:p-10 text-right h-fit">
           <Transition name="slide-fade">
             <div>
-              <h2 class="text-white font-bold mb-4 text-3xl md:text-5xl">{{items[currentSlide].title}}</h2>
-              <p class="text-lg md:text-xl text-zinc-300 my-5">{{items[currentSlide].content}}</p>
-              <button type="button" class="px-4 py-1.5 border-2 border-main-100 duration-150 hover:bg-main-100 font-bold hover:text-white rounded text-main-100">show</button>
+              <h2 class="text-white font-bold mb-4 text-3xl md:text-5xl">{{store.sliderNews[currentSlide].title}}</h2>
+              <p class="text-lg md:text-xl text-zinc-300 my-5">{{store.sliderNews[currentSlide].content}}</p>
+              <RouterLink :to="{ name: 'showNews', params: { id: store.sliderNews[currentSlide].id } }">
+                <button type="button" class="px-4 py-1.5 border-2 border-primary-950 duration-150 hover:bg-primary-950 font-bold hover:text-white rounded text-xl text-primary-950">{{ $t('home_header_btn') }}</button>
+              </RouterLink>
             </div>
           </Transition>
         </div>
@@ -107,7 +77,7 @@ const prev = () => carouselRef.value.prev();
       <div class="bg-primary-950 mb-10 w-full h-fit px-3 py-10 text-center rounded-md">
         <h2 class="text-main-50 font-bold text-4xl">{{ $t('contact_logo') }}</h2>
         <div class="flex flex-wrap md:flex-nowrap gap-6 container items-center">
-          <p class="text-secondary-950 text-2xl text-right font-semibold my-3">{{ $t('contact_description_title') }}</p>
+          <p class="text-secondary-950 text-lg md:text-2xl text-right font-semibold my-3">{{ $t('contact_description_title') }}</p>
           <ContactUs />
         </div>
       </div>
@@ -125,15 +95,4 @@ const prev = () => carouselRef.value.prev();
   width: 100% !important;
 }
 
-.carousel__viewport {
-  perspective: 2000px;
-}
-
-.carousel__track {
-  transform-style: preserve-3d;
-}
-
-.carousel__slide--sliding {
-  transition: 1s;
-}
 </style>

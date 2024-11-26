@@ -15,15 +15,19 @@ export const useAdminStore = defineStore('admin', () => {
     number: 0
   })
   const allNews = ref([])
-  const allComplaints = ref([])
+  const allContactUs = ref([])
   const newsData = ref({
     title : "",
     content : "",
     sendNoifyForGuest : false,
     image: null,
   })
+  const contactUsData = ref({
+    mobile: null,
+    message: null,
+  })
   const scrollStatusNews = ref(false)
-  const scrollStatusComplaints = ref(false)
+  const scrollStatusContactUs = ref(false)
 
 
   const getIndexNews = async (page,category, sort_by, search)=>{
@@ -41,8 +45,8 @@ export const useAdminStore = defineStore('admin', () => {
   }
   onMounted(async ()=>{await getIndexNews(1)})
 
-  const getIndexComplaints = async (page,category, sort_by, search)=>{
-    const {data} = await axios.get(`api/admin/complaints`, {
+  const getIndexContactUs = async (page, category, sort_by, search)=>{
+    const {data} = await axios.get(`api/admin/contactUs`, {
       params: {
         page: page,
         category: category,
@@ -50,17 +54,12 @@ export const useAdminStore = defineStore('admin', () => {
         search: search,
       }
     })
-    allComplaints.value.push(...data.data)
-    data.data[0] === undefined ? scrollStatusComplaints.value = false : scrollStatusComplaints.value = true
+    allContactUs.value.push(...data.data)
+    data.data[0] === undefined ? scrollStatusContactUs.value = false : scrollStatusContactUs.value = true
 
   }
-  onMounted(async ()=>{await getIndexComplaints(1)})
+  onMounted(async ()=>{await getIndexContactUs(1)})
 
-  const getIndexNotifications = async ()=>{
-    const {data} = await axios.get(`api/notifications`)
-    notifications.value = data
-  }
-  onMounted(async ()=>{await getIndexNotifications()})
 
   const getShowNews = async ()=>{
     const {data} = await axios.get(`api/news`)
@@ -82,5 +81,5 @@ export const useAdminStore = defineStore('admin', () => {
     return data
   }
 
-  return { notifications, getIndexNews, allNews, newsData, formPostNews ,getShowNews, formPutNews, formDeleteNews, alert, dashStep, openForm, slidOpen, allComplaints, getIndexComplaints, scrollStatusNews, scrollStatusComplaints }
+  return { contactUsData, notifications, getIndexNews, allNews, newsData, formPostNews ,getShowNews, formPutNews, formDeleteNews, alert, dashStep, openForm, slidOpen, allContactUs, getIndexContactUs, scrollStatusNews, scrollStatusContactUs }
 })

@@ -1,20 +1,25 @@
 {
-  "contact_logo": "LOG IN",
+  "contact_logo": "تواصل معنا",
   "contact_description_title": "وكالة انباء ديالى برس وكالة مستقلة تعمل بحيادية على نقل الاخبار والموضوعات التي تعنى بالشأن الداخلي لمحافظة ديالى بشكل خاص والعراق والعالم بشكل عام، معتمدة لدى نقابة الصحفيين العراقيين بالرقم 2049",
-  "contact_phoneNumber": "Phone Number",
-  "contact_name": "Enter your Phone Number",
+  "contact_phoneNumber": "رقم الهاتف",
+  "contact_name": "الاسم",
   "contact_email": "password",
-  "contact_description": "Enter your password",
-  "contact_button": "submit",
+  "contact_description": "الوصف",
+  "contact_button": "ارسال",
   "footer_title": "وكالة انباء ديالى برس",
+
+  "login_logo": "تسجيل دخول",
+  "signup_email": "رقم الهاتف",
+  "signup_password": "كلمة السر",
+  "signup_button": "تسجيل",
 
 
   "nav_title": "وكالة انباء ديالى برس",
-  "nav_home": "وكالة انباء ديالى برس",
-  "nav_news": "وكالة انباء ديالى برس",
-  "nav_about": "وكالة انباء ديالى برس",
+  "nav_home": "الرئيسية",
+  "nav_news": "الاخبار",
+  "nav_about": "حول الوكالة",
 
-  "home_header_btn": "وكالة انباء ديالى برس",
+  "home_header_btn": "...اقرا المزيد",
 
 
 

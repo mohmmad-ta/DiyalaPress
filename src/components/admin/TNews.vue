@@ -5,27 +5,38 @@ import { useAdminStore } from '@/stores/StoreAdmin.js'
 const store = useAdminStore();
 
 const alert = async (id, index)=>{
-  store.alert.description = "Do you really want to delete the product ?"
-  store.alert.title = "Delete The Product ?"
+  store.alert.description = "هل تريد حذف الخير ?"
+  store.alert.title = " حذف الخير ?"
   store.alert.id = id
   store.alert.open = true
   store.alert.number = index
 }
 const alertFunction = async ()=>{
-  await store.Delete(`api/news/${store.alert.id}`)
+  await store.formDeleteNews(store.alert.id)
   store.allNews.splice(store.alert.number, 1);
   store.alert.open = false
 }
 const updateNews = async (index)=>{
   store.form_status = "put"
   store.openForm = store.dashStep
-  store.newsData = store.allNews[index]
+  store.newsData = {
+    title : store.allNews[index].title,
+    content : store.allNews[index].content,
+    sendNoifyForGuest : false,
+    image: null,
+  }
   store.alert.id = store.allNews[index].id
   store.alert.number = index
 }
 const create = async () => {
   store.form_status = "post"
   store.openForm = store.dashStep
+  store.newsData = {
+    title : "",
+    content : "",
+    sendNoifyForGuest : false,
+    image: null,
+  }
 }
 </script>
 
@@ -39,10 +50,10 @@ const create = async () => {
         <thead class="border-b-2 border-secondary-100 text-secondary-950 text-sm font-bold">
         <tr>
           <th class="p-2">الاعدادات</th>
-          <th class="p-2 tableHid">created_at</th>
-          <th class="p-2 tableHid">product name</th>
-          <th class="p-2">title</th>
-          <th class="p-2 tableHid">no.</th>
+          <th class="p-2">تاريخ</th>
+          <th class="p-2">الوصف</th>
+          <th class="p-2">العنوان</th>
+          <th class="p-2 tableHid">التسلسل</th>
         </tr>
         </thead>
         <tbody class="text-center text-primary-950">

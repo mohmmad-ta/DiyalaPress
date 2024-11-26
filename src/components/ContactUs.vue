@@ -8,7 +8,8 @@ const alert = ref("")
 const alertTrue = ref("")
 
 const formPostComplaints = () =>{
-  axios.post(`api/frontend/complaints`, store.complaintData).then((res) => {
+  axios.post(`api/frontend/contactUs`, store.contactUsData).then((res) => {
+    alert.value = ""
     alertTrue.value = "تم ارسال طلبك بنجاح"
   }).catch((err) => {
     alert.value = "البيانات غير مكتملة او غير صحيحة"
@@ -19,40 +20,27 @@ const formPostComplaints = () =>{
 <template>
   <main class="container">
     <div class="w-full h-fit flex items-center justify-center">
-      <div class="w-96">
-        <!--    logo    -->
-        <div class="items-center flex gap-4 mb-4 justify-center w-full">
-          <h2 class="font-bold text-primary-950">{{ $t('signup_logo') }}</h2>
-        </div>
+      <div class="w-96 mb-4">
         <!--    input     -->
         <form class="text-right grid gap-1.5">
 
-          <!--   input user name   -->
           <div>
             <label class="text-secondary-950">{{ $t('contact_name') }}</label>
             <div class="flex gap-2 mt-0.5 text-sm">
-              <input v-model="store.complaintData.name" type="text" class="outline-none w-full text-right border-zinc-200 border-1 text-white transition px-3 py-2 bg-inputColor-950 rounded-md">
+              <input v-model="store.contactUsData.name" type="text" class="outline-none w-full text-right border-zinc-200 border-1 text-white transition px-3 py-2 bg-inputColor-950 rounded-md">
             </div>
           </div>
-          <!--   input user name   -->
-          <div>
-            <label class="text-secondary-950">{{ $t('contact_email') }}</label>
-            <div class="flex gap-2 mt-0.5 text-sm">
-              <input v-model="store.complaintData.mobile" type="text" class="outline-none w-full text-right border-zinc-200 border-1 text-white transition px-3 py-2 bg-inputColor-950 rounded-md">
-            </div>
-          </div>
-          <!--   input user name   -->
           <div>
             <label class="text-secondary-950">{{ $t('contact_phoneNumber') }}</label>
             <div class="flex gap-2 mt-0.5 text-sm">
-              <input v-model="store.complaintData.subject" type="text" class="outline-none w-full text-right border-zinc-200 border-1 text-white transition px-3 py-2 bg-inputColor-950 rounded-md">
+              <input v-model="store.contactUsData.mobile" type="text" class="outline-none w-full text-right border-zinc-200 border-1 text-white transition px-3 py-2 bg-inputColor-950 rounded-md">
             </div>
           </div>
           <!--   input user name   -->
           <div>
             <label class="text-secondary-950">{{ $t('contact_description') }}</label>
             <div class="flex gap-2 mt-0.5 text-sm">
-              <textarea v-model="store.complaintData.description" type="password" class="outline-none w-full text-right border-zinc-200 border-1 text-white transition px-3 py-2 bg-inputColor-950 rounded-md"></textarea>
+              <textarea v-model="store.contactUsData.message" class="outline-none w-full text-right border-zinc-200 border-1 text-white transition px-3 py-2 bg-inputColor-950 rounded-md"></textarea>
             </div>
           </div>
 

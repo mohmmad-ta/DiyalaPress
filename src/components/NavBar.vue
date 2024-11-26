@@ -10,13 +10,13 @@ const store = useDataStore()
       <div class="flex items-center justify-end gap-8 h-16">
         <nav class="flex items-center gap-3 font-semibold text-lg text-secondary-950">
           <RouterLink to="/aboutUs" class="hover:text-primary-950 duration-150">
-            about us
+            {{ $t('nav_about') }}
           </RouterLink>
           <RouterLink to="/news" class="hover:text-primary-950 duration-150">
-            news
+            {{ $t('nav_news') }}
           </RouterLink>
           <RouterLink to="/" class="hover:text-primary-950 duration-150">
-            home
+            {{ $t('nav_home') }}
           </RouterLink>
         </nav>
         <div class="flex gap-2 items-center">
