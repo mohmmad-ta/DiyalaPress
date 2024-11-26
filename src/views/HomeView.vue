@@ -4,6 +4,7 @@ import { Carousel, Slide } from 'vue3-carousel';
 import CardNews from "@/components/CardNews.vue";
 import { useDataStore } from '@/stores/StoreData.js'
 import {ref} from "vue";
+import ContactUs from "@/components/ContactUs.vue";
 const store = useDataStore()
 
 const config = {
@@ -86,26 +87,28 @@ const prev = () => carouselRef.value.prev();
           <Transition name="slide-fade">
             <div>
               <h2 class="text-white font-bold mb-4 text-3xl md:text-5xl">{{items[currentSlide].title}}</h2>
-              <p class="text-lg md:text-xl text-white my-5">{{items[currentSlide].content}}</p>
+              <p class="text-lg md:text-xl text-zinc-300 my-5">{{items[currentSlide].content}}</p>
               <button type="button" class="px-4 py-1.5 border-2 border-main-100 duration-150 hover:bg-main-100 font-bold hover:text-white rounded text-main-100">show</button>
             </div>
           </Transition>
         </div>
       </div>
     </header>
-    <div class="container justify-center flex flex-wrap lg:flex-nowrap gap-2 py-14">
-      <div class="bg-primary-950 mb-10 w-full lg:w-96 h-fit px-3 py-10 text-center rounded-md">
-        <h2 class="text-main-50 font-bold text-4xl">Lorem ipsum dolor sit amet</h2>
-        <p class="text-secondary-950 my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad enim exercitationem, laborum molestiae quo saepe sint. Aliquid delectus harum, ipsum maiores maxime odio placeat possimus praesentium reprehenderit soluta totam.</p>
-        <RouterLink to="/problem">
-          <button type="button" class="border-main-50 border-2 rounded py-1 px-3 duration-150 hover:bg-main-50 text-white">add</button>
-        </RouterLink>
-      </div>
+    <div class="container py-14">
       <div class="flex gap-4 justify-center flex-wrap w-full">
         <div v-for="News in store.allNews" :key="News.id">
           <RouterLink :to="{ name: 'showNews', params: { id: News.id } }">
             <CardNews :News="News" />
           </RouterLink>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="bg-primary-950 mb-10 w-full h-fit px-3 py-10 text-center rounded-md">
+        <h2 class="text-main-50 font-bold text-4xl">{{ $t('contact_logo') }}</h2>
+        <div class="flex flex-wrap md:flex-nowrap gap-6 container items-center">
+          <p class="text-secondary-950 text-2xl text-right font-semibold my-3">{{ $t('contact_description_title') }}</p>
+          <ContactUs />
         </div>
       </div>
     </div>
