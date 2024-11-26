@@ -7,25 +7,21 @@ const store = useDataStore()
 <template>
   <header class="z-40 fixed top-0 left-0 w-full h-16 bg-white shadow-md shadow-secondary-50 overflow-hidden">
     <div class="container">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center gap-3 text-primary-950">
-          <button @click="store.openForm = 10" class="hover:text-primary-500 duration-150">
-            <i class="fa-solid fa-magnifying-glass text-md"></i>
-          </button>
-        </div>
-        <div class="flex items-center gap-6">
-          <nav class="flex items-center gap-3 text-secondary-950">
-            <RouterLink to="/problem" class="hover:text-primary-950 duration-150">
-              problem
-            </RouterLink>
-            <RouterLink to="/news" class="hover:text-primary-950 duration-150">
-              news
-            </RouterLink>
-            <RouterLink to="/" class="hover:text-primary-950 duration-150">
-              home
-            </RouterLink>
-          </nav>
-          <h1 class="font-bold text-2xl cursor-default text-main-50">DNA</h1>
+      <div class="flex items-center justify-end gap-8 h-16">
+        <nav class="flex items-center gap-3 font-semibold text-lg text-secondary-950">
+          <RouterLink to="/aboutUs" class="hover:text-primary-950 duration-150">
+            about us
+          </RouterLink>
+          <RouterLink to="/news" class="hover:text-primary-950 duration-150">
+            news
+          </RouterLink>
+          <RouterLink to="/" class="hover:text-primary-950 duration-150">
+            home
+          </RouterLink>
+        </nav>
+        <div class="flex gap-2 items-center">
+          <h1 class="font-bold text-main-50 hidden md:block text-xl">DIYALA PRESS</h1>
+          <img class="w-14 h-14" src="/p2.png" alt="">
         </div>
       </div>
     </div>
