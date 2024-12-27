@@ -6,8 +6,7 @@ const router = useRouter();
 
 const store = useAdminStore();
 const logout = ()=>{
-  localStorage.setItem("token", null);
-  localStorage.setItem("role", null);
+  localStorage.clear();
   router.push('/')
 }
 </script>
